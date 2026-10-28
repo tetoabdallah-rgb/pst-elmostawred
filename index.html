@@ -7,7 +7,7 @@
   
   <!-- Web App Manifest & Meta for Mobile (Android & iOS) -->
   <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#0a0f1d">
+  <meta name="theme-color" content="#070a13">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="PST المستورد">
@@ -17,23 +17,24 @@
   <!-- Google Fonts: Cairo & Outfit -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Outfit:wght@500;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bg-dark: #080c16;
-      --bg-card: #0f172a;
-      --bg-card-hover: #1e293b;
-      --border-color: #1e293b;
+      --bg-dark: #070a13;
+      --bg-surface: #0e1526;
+      --bg-card: #131c31;
+      --bg-card-hover: #1a2642;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-focus: #f59e0b;
       --primary-gold: #f59e0b;
-      --primary-gold-hover: #d97706;
-      --primary-cyan: #06b6d4;
+      --gold-gradient: linear-gradient(135deg, #fbbf24 0%, #f59e0b 60%, #d97706 100%);
+      --cyan-gradient: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%);
       --accent-green: #10b981;
       --accent-red: #ef4444;
       --text-main: #f8fafc;
       --text-muted: #94a3b8;
       --bottom-nav-height: 64px;
-      --header-height: 64px;
     }
 
     * {
@@ -56,31 +57,31 @@
       display: flex;
       flex-direction: column;
       overflow-x: hidden;
-      padding-bottom: calc(var(--bottom-nav-height) + 20px);
+      padding-bottom: calc(var(--bottom-nav-height) + 24px);
     }
 
     /* Scrollbars */
     ::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
+      width: 5px;
+      height: 5px;
     }
     ::-webkit-scrollbar-track {
       background: var(--bg-dark);
     }
     ::-webkit-scrollbar-thumb {
-      background: #334155;
+      background: #24324d;
       border-radius: 4px;
     }
 
-    /* Fixed App Header */
+    /* Top App Header */
     .app-header {
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(10, 15, 29, 0.92);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(7, 10, 19, 0.94);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
       padding: 10px 16px;
       display: flex;
       align-items: center;
@@ -96,32 +97,49 @@
     }
 
     .brand-logo-img {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
-      box-shadow: 0 0 12px rgba(245, 158, 11, 0.3);
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      box-shadow: 0 0 14px rgba(245, 158, 11, 0.35);
+      transition: transform 0.2s;
+    }
+    .brand-box:active .brand-logo-img {
+      transform: scale(0.94);
     }
 
     .brand-titles {
       display: flex;
       flex-direction: column;
-      line-height: 1.1;
+      line-height: 1.15;
     }
 
     .brand-title-en {
       font-family: 'Outfit', sans-serif;
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       font-weight: 900;
-      letter-spacing: 1px;
-      background: linear-gradient(135deg, #fbbf24, #f59e0b);
+      letter-spacing: 0.5px;
+      background: var(--gold-gradient);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
     .brand-title-ar {
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       font-weight: 800;
-      color: #e2e8f0;
+      color: #cbd5e1;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .brand-badge {
+      font-size: 0.65rem;
+      background: rgba(16, 185, 129, 0.2);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      padding: 1px 5px;
+      border-radius: 4px;
+      font-weight: 700;
     }
 
     .header-actions {
@@ -131,8 +149,8 @@
     }
 
     .btn-icon-header {
-      background: #1e293b;
-      border: 1px solid #334155;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
       color: #f8fafc;
       width: 40px;
       height: 40px;
@@ -143,10 +161,12 @@
       cursor: pointer;
       position: relative;
       transition: all 0.2s ease;
+      font-size: 1.15rem;
     }
 
     .btn-icon-header:active {
       transform: scale(0.92);
+      background: #1e293b;
     }
 
     .badge-counter {
@@ -156,25 +176,25 @@
       background: var(--primary-gold);
       color: #000;
       font-size: 0.7rem;
-      font-weight: 800;
+      font-weight: 900;
       width: 20px;
       height: 20px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.6);
     }
 
     /* Container */
     .container {
-      max-width: 1200px;
+      max-width: 1240px;
       margin: 0 auto;
       padding: 12px 16px;
       width: 100%;
     }
 
-    /* Search & Filter Bar */
+    /* Animated Interactive Search Box */
     .search-box {
       position: relative;
       margin-bottom: 14px;
@@ -182,20 +202,21 @@
 
     .search-input {
       width: 100%;
-      background: #0f172a;
-      border: 1.5px solid #1e293b;
+      background: var(--bg-surface);
+      border: 1.5px solid var(--border-subtle);
       border-radius: 14px;
-      padding: 12px 42px 12px 16px;
+      padding: 12px 44px 12px 16px;
       color: #fff;
       font-family: inherit;
       font-size: 0.95rem;
       outline: none;
-      transition: border-color 0.2s;
+      transition: all 0.25s ease;
     }
 
     .search-input:focus {
       border-color: var(--primary-gold);
-      box-shadow: 0 0 10px rgba(245, 158, 11, 0.2);
+      background: #111a30;
+      box-shadow: 0 0 16px rgba(245, 158, 11, 0.25);
     }
 
     .search-icon {
@@ -205,85 +226,273 @@
       transform: translateY(-50%);
       color: var(--text-muted);
       pointer-events: none;
+      font-size: 1.1rem;
     }
 
-    /* Hero Banner */
-    .hero-banner {
-      background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 60%, #1e293b 100%);
-      border: 1px solid rgba(245, 158, 11, 0.25);
-      border-radius: 18px;
-      padding: 18px 20px;
-      margin-bottom: 16px;
+    /* --- 1. Story Circles (Instagram / Noon Style) --- */
+    .stories-container {
+      display: flex;
+      gap: 14px;
+      overflow-x: auto;
+      padding: 4px 2px 14px 2px;
+      scrollbar-width: none;
+    }
+    .stories-container::-webkit-scrollbar {
+      display: none;
+    }
+
+    .story-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: transform 0.2s;
+    }
+    .story-item:active {
+      transform: scale(0.92);
+    }
+
+    .story-ring {
+      width: 62px;
+      height: 62px;
+      border-radius: 50%;
+      padding: 2.5px;
+      background: linear-gradient(45deg, #f59e0b, #ef4444, #38bdf8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.2);
+    }
+
+    .story-inner {
+      width: 100%;
+      height: 100%;
+      background: var(--bg-dark);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      border: 2px solid var(--bg-dark);
+    }
+
+    .story-label {
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: #e2e8f0;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    /* --- 2. Interactive Hero Banner Slider --- */
+    .hero-slider-wrap {
+      position: relative;
+      margin-bottom: 18px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-slide {
+      background: linear-gradient(135deg, #1e1b4b 0%, #0f172a 50%, #1e293b 100%);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      border-radius: 20px;
+      padding: 22px 20px;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 175px;
     }
 
-    .hero-banner::after {
-      content: '';
+    .hero-glow-sphere {
       position: absolute;
-      bottom: -40px;
-      left: -40px;
-      width: 130px;
-      height: 130px;
-      background: radial-gradient(circle, rgba(245, 158, 11, 0.2) 0%, transparent 70%);
+      top: -30px;
+      left: -30px;
+      width: 140px;
+      height: 140px;
+      background: radial-gradient(circle, rgba(245, 158, 11, 0.25) 0%, transparent 70%);
       pointer-events: none;
     }
 
-    .hero-badge {
+    .hero-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .hero-badge-pill {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: rgba(245, 158, 11, 0.15);
+      background: rgba(245, 158, 11, 0.18);
       color: var(--primary-gold);
-      border: 1px solid rgba(245, 158, 11, 0.4);
-      padding: 3px 10px;
+      border: 1px solid rgba(245, 158, 11, 0.5);
+      padding: 4px 12px;
       border-radius: 20px;
       font-size: 0.78rem;
-      font-weight: 700;
-      margin-bottom: 8px;
+      font-weight: 800;
+      letter-spacing: 0.3px;
     }
 
-    .hero-title {
-      font-size: 1.3rem;
+    .hero-title-main {
+      font-size: 1.35rem;
       font-weight: 900;
       color: #ffffff;
       margin-bottom: 6px;
       line-height: 1.3;
     }
 
-    .hero-desc {
+    .hero-subtitle {
       font-size: 0.88rem;
       color: #94a3b8;
-      margin-bottom: 12px;
-      line-height: 1.4;
+      margin-bottom: 14px;
+      line-height: 1.45;
+      max-width: 90%;
     }
 
-    .hero-highlights {
+    .hero-cta-row {
       display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
+      align-items: center;
+      gap: 10px;
     }
 
-    .highlight-pill {
-      font-size: 0.75rem;
-      padding: 4px 10px;
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      color: #e2e8f0;
+    .btn-hero-action {
+      background: var(--gold-gradient);
+      color: #000;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 10px;
+      font-weight: 900;
+      font-size: 0.85rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+      transition: transform 0.2s;
+    }
+    .btn-hero-action:active {
+      transform: scale(0.94);
+    }
+
+    /* --- 3. Live Flash Deals Card with Real-time Countdown --- */
+    .flash-deal-banner {
+      background: linear-gradient(135deg, #2b0b14 0%, #160a1c 60%, #1e112a 100%);
+      border: 1.5px solid rgba(239, 68, 68, 0.4);
+      border-radius: 18px;
+      padding: 14px 16px;
+      margin-bottom: 20px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(239, 68, 68, 0.18);
+    }
+
+    .flash-deal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .flash-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .flash-badge-pulse {
+      background: #ef4444;
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 900;
+      padding: 2px 8px;
+      border-radius: 6px;
+      animation: pulseAlert 1.5s infinite;
+    }
+
+    @keyframes pulseAlert {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.85; transform: scale(1.05); }
+    }
+
+    .countdown-timer-box {
       display: flex;
       align-items: center;
       gap: 4px;
+      direction: ltr;
     }
 
-    /* Category Chips Slider */
+    .time-digit {
+      background: #0f172a;
+      border: 1px solid #334155;
+      color: #fbbf24;
+      font-family: 'Outfit', monospace;
+      font-size: 0.95rem;
+      font-weight: 900;
+      padding: 3px 6px;
+      border-radius: 6px;
+      min-width: 28px;
+      text-align: center;
+    }
+    .time-colon {
+      color: #ef4444;
+      font-weight: 900;
+      font-size: 0.9rem;
+    }
+
+    /* --- 4. Trust & Experience Bar (Golden Guarantee) --- */
+    .trust-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 12px 10px;
+      margin-bottom: 20px;
+    }
+
+    @media (max-width: 600px) {
+      .trust-strip {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+    }
+
+    .trust-box {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .trust-icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+
+    .trust-text-title {
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.2;
+    }
+    .trust-text-sub {
+      font-size: 0.68rem;
+      color: var(--text-muted);
+    }
+
+    /* --- 5. Category Pills / Filter Chips --- */
     .categories-scroll {
       display: flex;
       gap: 8px;
       overflow-x: auto;
       padding-bottom: 8px;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
       scrollbar-width: none;
     }
     .categories-scroll::-webkit-scrollbar {
@@ -292,28 +501,67 @@
 
     .chip-btn {
       white-space: nowrap;
-      background: #0f172a;
-      border: 1px solid #1e293b;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
       color: #cbd5e1;
-      padding: 8px 16px;
-      border-radius: 12px;
+      padding: 9px 16px;
+      border-radius: 14px;
       font-size: 0.88rem;
-      font-weight: 700;
+      font-weight: 800;
       cursor: pointer;
       display: flex;
       align-items: center;
       gap: 6px;
-      transition: all 0.2s;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .chip-btn.active {
-      background: linear-gradient(135deg, #f59e0b, #d97706);
+      background: var(--gold-gradient);
       color: #000;
       border-color: #f59e0b;
-      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.35);
+      box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+      transform: translateY(-1px);
     }
 
-    /* Filter & Sorting Controls */
+    /* Section Headers */
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      margin-top: 8px;
+    }
+
+    .section-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-title {
+      font-size: 1.12rem;
+      font-weight: 900;
+      color: #fff;
+    }
+
+    .section-counter {
+      font-size: 0.75rem;
+      background: #1e293b;
+      color: var(--text-muted);
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-weight: 700;
+    }
+
+    .btn-view-all {
+      font-size: 0.82rem;
+      color: var(--primary-gold);
+      text-decoration: none;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    /* Sort & Controls Bar */
     .controls-row {
       display: flex;
       align-items: center;
@@ -323,28 +571,24 @@
       font-size: 0.85rem;
     }
 
-    .results-count {
-      color: var(--text-muted);
-      font-weight: 600;
-    }
-
     .sort-select {
-      background: #0f172a;
-      border: 1px solid #1e293b;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
       color: #f1f5f9;
-      padding: 6px 12px;
-      border-radius: 8px;
+      padding: 7px 12px;
+      border-radius: 10px;
       font-family: inherit;
       font-size: 0.85rem;
       outline: none;
       cursor: pointer;
+      font-weight: 700;
     }
 
-    /* Products Grid */
+    /* --- 6. Product Cards Grid --- */
     .products-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 14px;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 16px;
     }
 
     @media (max-width: 580px) {
@@ -356,42 +600,43 @@
 
     .product-card {
       background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: 16px;
+      border: 1px solid var(--border-subtle);
+      border-radius: 18px;
       overflow: hidden;
       display: flex;
       flex-direction: column;
       position: relative;
-      transition: transform 0.2s, border-color 0.2s;
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
       cursor: pointer;
     }
 
     .product-card:hover {
-      border-color: #334155;
-      transform: translateY(-2px);
+      border-color: #3b4b6b;
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
     }
 
     .card-img-wrap {
       width: 100%;
-      height: 150px;
-      background: #0a0f1d;
+      height: 165px;
+      background: #080d1a;
       position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
-      padding: 10px;
+      padding: 12px;
     }
 
     .card-img-wrap img {
-      max-width: 85%;
-      max-height: 85%;
+      max-width: 90%;
+      max-height: 90%;
       object-fit: contain;
-      transition: transform 0.3s;
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .product-card:hover .card-img-wrap img {
-      transform: scale(1.05);
+      transform: scale(1.08);
     }
 
     .badge-condition {
@@ -406,31 +651,31 @@
     }
 
     .condition-import {
-      background: #064e3b;
+      background: rgba(16, 185, 129, 0.2);
       color: #34d399;
-      border: 1px solid #059669;
+      border: 1px solid rgba(16, 185, 129, 0.5);
     }
 
     .condition-new {
-      background: #1e3a8a;
+      background: rgba(59, 130, 246, 0.2);
       color: #60a5fa;
-      border: 1px solid #2563eb;
+      border: 1px solid rgba(59, 130, 246, 0.5);
     }
 
     .condition-zero {
-      background: #78350f;
+      background: rgba(245, 158, 11, 0.2);
       color: #fbbf24;
-      border: 1px solid #d97706;
+      border: 1px solid rgba(245, 158, 11, 0.5);
     }
 
     .btn-fav-card {
       position: absolute;
       top: 8px;
       left: 8px;
-      width: 30px;
-      height: 30px;
-      background: rgba(15, 23, 42, 0.7);
-      border: 1px solid rgba(255, 255, 255, 0.1);
+      width: 32px;
+      height: 32px;
+      background: rgba(10, 15, 29, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -439,11 +684,13 @@
       cursor: pointer;
       z-index: 2;
       transition: all 0.2s;
+      font-size: 0.95rem;
     }
 
     .btn-fav-card.active {
       color: #ef4444;
       background: #fff;
+      transform: scale(1.1);
     }
 
     .card-body {
@@ -457,7 +704,7 @@
     .card-category {
       font-size: 0.72rem;
       color: var(--primary-gold);
-      font-weight: 700;
+      font-weight: 800;
       margin-bottom: 2px;
     }
 
@@ -466,7 +713,7 @@
       font-weight: 800;
       color: #ffffff;
       margin-bottom: 6px;
-      line-height: 1.3;
+      line-height: 1.35;
       display: -webkit-box;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
@@ -486,8 +733,9 @@
       background: #1e293b;
       color: #cbd5e1;
       padding: 2px 6px;
-      border-radius: 4px;
-      border: 1px solid #334155;
+      border-radius: 5px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      font-weight: 600;
     }
 
     .price-row {
@@ -511,6 +759,16 @@
       text-decoration: line-through;
     }
 
+    .discount-badge {
+      font-size: 0.68rem;
+      background: rgba(239, 68, 68, 0.2);
+      color: #ef4444;
+      border: 1px solid rgba(239, 68, 68, 0.4);
+      padding: 1px 5px;
+      border-radius: 4px;
+      font-weight: 800;
+    }
+
     .card-actions {
       display: grid;
       grid-template-columns: 1fr auto;
@@ -518,19 +776,19 @@
     }
 
     .btn-add-cart {
-      background: linear-gradient(135deg, #f59e0b, #d97706);
+      background: var(--gold-gradient);
       color: #000;
       border: none;
-      padding: 8px 10px;
+      padding: 9px 12px;
       border-radius: 10px;
-      font-weight: 800;
+      font-weight: 900;
       font-size: 0.82rem;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 4px;
       cursor: pointer;
-      transition: filter 0.2s;
+      transition: filter 0.2s, transform 0.1s;
     }
 
     .btn-add-cart:active {
@@ -541,26 +799,63 @@
       background: #10b981;
       color: #fff;
       border: none;
-      width: 36px;
+      width: 38px;
       border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      font-size: 1.1rem;
+      font-size: 1.15rem;
+      transition: transform 0.1s;
+    }
+    .btn-whatsapp-quick:active {
+      transform: scale(0.94);
     }
 
-    /* Bottom Navigation Bar (Native Mobile Feel) */
+    /* --- 7. Floating Smart WhatsApp Advisor Button --- */
+    .floating-advisor-btn {
+      position: fixed;
+      bottom: calc(var(--bottom-nav-height) + 16px);
+      left: 16px;
+      z-index: 80;
+      background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+      color: #fff;
+      padding: 10px 16px;
+      border-radius: 30px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 800;
+      font-size: 0.85rem;
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .floating-advisor-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(37, 211, 102, 0.55);
+    }
+
+    .advisor-pulse {
+      width: 10px;
+      height: 10px;
+      background: #fff;
+      border-radius: 50%;
+      animation: pulseAlert 1.2s infinite;
+    }
+
+    /* --- 8. Bottom Navigation Bar (iOS / Android Native Feel) --- */
     .bottom-nav {
       position: fixed;
       bottom: 0;
       left: 0;
       right: 0;
       height: var(--bottom-nav-height);
-      background: rgba(10, 15, 29, 0.95);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(7, 10, 19, 0.95);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-top: 1px solid var(--border-subtle);
       display: flex;
       justify-content: space-around;
       align-items: center;
@@ -576,7 +871,7 @@
       color: var(--text-muted);
       text-decoration: none;
       font-size: 0.72rem;
-      font-weight: 700;
+      font-weight: 800;
       width: 20%;
       height: 100%;
       cursor: pointer;
@@ -598,7 +893,7 @@
       position: fixed;
       inset: 0;
       background: rgba(0, 0, 0, 0.75);
-      backdrop-filter: blur(6px);
+      backdrop-filter: blur(8px);
       z-index: 200;
       display: none;
       align-items: flex-end;
@@ -613,16 +908,16 @@
     }
 
     .modal-sheet {
-      background: #0f172a;
+      background: #0d1424;
       width: 100%;
       max-width: 600px;
       max-height: 90vh;
-      border-radius: 24px 24px 0 0;
-      border-top: 2px solid #334155;
+      border-radius: 26px 26px 0 0;
+      border-top: 2px solid #2d3d5d;
       display: flex;
       flex-direction: column;
       overflow: hidden;
-      box-shadow: 0 -10px 40px rgba(0,0,0,0.8);
+      box-shadow: 0 -12px 45px rgba(0,0,0,0.85);
       transform: translateY(100%);
       transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
     }
@@ -633,7 +928,7 @@
 
     .sheet-header {
       padding: 16px 20px;
-      border-bottom: 1px solid #1e293b;
+      border-bottom: 1px solid var(--border-subtle);
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -646,8 +941,8 @@
     }
 
     .btn-close-sheet {
-      background: #1e293b;
-      border: none;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
       color: #94a3b8;
       width: 32px;
       height: 32px;
@@ -668,18 +963,19 @@
     /* Product Details in Modal */
     .details-img-box {
       width: 100%;
-      height: 200px;
-      background: #080c16;
-      border-radius: 16px;
+      height: 210px;
+      background: #080d1a;
+      border-radius: 18px;
       display: flex;
       align-items: center;
       justify-content: center;
       margin-bottom: 14px;
+      padding: 10px;
     }
 
     .details-img-box img {
-      max-height: 90%;
-      max-width: 90%;
+      max-height: 95%;
+      max-width: 95%;
       object-fit: contain;
     }
 
@@ -692,19 +988,19 @@
     }
 
     .specs-table td {
-      padding: 8px 10px;
-      border-bottom: 1px solid #1e293b;
+      padding: 9px 12px;
+      border-bottom: 1px solid var(--border-subtle);
     }
 
     .specs-table td:first-child {
       color: var(--text-muted);
       width: 35%;
-      font-weight: 700;
+      font-weight: 800;
     }
 
     .specs-table td:last-child {
       color: #f1f5f9;
-      font-weight: 600;
+      font-weight: 700;
     }
 
     /* Cart styling */
@@ -713,14 +1009,14 @@
       align-items: center;
       gap: 12px;
       padding: 12px 0;
-      border-bottom: 1px solid #1e293b;
+      border-bottom: 1px solid var(--border-subtle);
     }
 
     .cart-item-img {
       width: 60px;
       height: 60px;
-      background: #080c16;
-      border-radius: 10px;
+      background: #080d1a;
+      border-radius: 12px;
       object-fit: contain;
       padding: 4px;
     }
@@ -738,8 +1034,8 @@
 
     .cart-item-price {
       color: var(--primary-gold);
-      font-weight: 800;
-      font-size: 0.9rem;
+      font-weight: 900;
+      font-size: 0.92rem;
     }
 
     .qty-controls {
@@ -749,21 +1045,21 @@
     }
 
     .qty-btn {
-      width: 28px;
-      height: 28px;
+      width: 30px;
+      height: 30px;
       border-radius: 8px;
-      background: #1e293b;
+      background: var(--bg-surface);
       border: 1px solid #334155;
       color: #fff;
-      font-weight: 800;
+      font-weight: 900;
       cursor: pointer;
     }
 
     .cart-summary {
-      background: #080c16;
-      border: 1px solid #1e293b;
-      border-radius: 14px;
-      padding: 14px;
+      background: #090f1d;
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 16px;
       margin-top: 14px;
     }
 
@@ -781,7 +1077,7 @@
       margin-top: 10px;
       color: #fff;
       font-weight: 900;
-      font-size: 1.1rem;
+      font-size: 1.15rem;
     }
 
     .btn-checkout {
@@ -791,7 +1087,7 @@
       border: none;
       padding: 14px;
       border-radius: 14px;
-      font-weight: 800;
+      font-weight: 900;
       font-size: 1rem;
       margin-top: 12px;
       cursor: pointer;
@@ -799,6 +1095,7 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
+      box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
     }
 
     /* Checkout Form Inputs */
@@ -811,16 +1108,16 @@
       font-size: 0.85rem;
       color: var(--text-muted);
       margin-bottom: 6px;
-      font-weight: 700;
+      font-weight: 800;
     }
 
     .form-control {
       width: 100%;
-      background: #080c16;
-      border: 1px solid #1e293b;
+      background: #080d1a;
+      border: 1px solid var(--border-subtle);
       color: #fff;
-      padding: 10px 14px;
-      border-radius: 10px;
+      padding: 11px 14px;
+      border-radius: 12px;
       font-family: inherit;
       font-size: 0.9rem;
       outline: none;
@@ -849,12 +1146,12 @@
       transform: translateX(-50%) translateY(-20px);
       background: #1e293b;
       color: #fff;
-      padding: 10px 20px;
+      padding: 10px 22px;
       border-radius: 30px;
       border: 1px solid var(--primary-gold);
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.65);
       font-size: 0.88rem;
-      font-weight: 700;
+      font-weight: 800;
       z-index: 300;
       opacity: 0;
       pointer-events: none;
@@ -884,7 +1181,10 @@
       <img src="icon.svg" alt="PST Logo" class="brand-logo-img">
       <div class="brand-titles">
         <span class="brand-title-en">PST STORE</span>
-        <span class="brand-title-ar">المـســتـورد</span>
+        <div class="brand-title-ar">
+          <span>المـســتـورد</span>
+          <span class="brand-badge">أصلي 100%</span>
+        </div>
       </div>
     </div>
     <div class="header-actions">
@@ -902,25 +1202,116 @@
   <!-- Main Container -->
   <main class="container">
 
-    <!-- Search Input -->
+    <!-- Interactive Animated Search Input -->
     <div class="search-box">
-      <input type="text" id="searchInput" class="search-input" placeholder="ابحث عن: ThinkPad، Core i7، آيفون، شاحن، RAM..." oninput="filterProducts()">
+      <input type="text" id="searchInput" class="search-input" placeholder="ابحث عن: ThinkPad i7، آيفون 13، شاحن GaN..." oninput="filterProducts()">
       <span class="search-icon">🔍</span>
     </div>
 
-    <!-- Hero Announcement Banner -->
-    <section class="hero-banner">
-      <div class="hero-badge">⚡ وارد الخارج فرز أول A+ وجديد بالكرتونة</div>
-      <h1 class="hero-title">متجر PST - المستورد</h1>
-      <p class="hero-desc">وجهتك الأولى للأجهزة التكنولوجية: لابتوبات استيراد للأعمال والجرافيكس، أحدث الهواتف الذكية، وإكسسوارات معتمدة بضمان حقيقي وتجربة 14 يوم.</p>
-      <div class="hero-highlights">
-        <div class="highlight-pill">🛡️ ضمان فحص وتجربة 14 يوم</div>
-        <div class="highlight-pill">🚚 شحن سريع ومعاينة قبل الاستلام</div>
-        <div class="highlight-pill">💬 دعم واستفسار واتساب مباشر</div>
+    <!-- 1. Instagram/Noon Style Story Circles -->
+    <div class="stories-container">
+      <div class="story-item" onclick="setCategory('all')">
+        <div class="story-ring"><div class="story-inner">⚡</div></div>
+        <span class="story-label">أحدث العروض</span>
       </div>
-    </section>
+      <div class="story-item" onclick="setCategory('laptop-import')">
+        <div class="story-ring"><div class="story-inner">💻</div></div>
+        <span class="story-label">استيراد بيزنس</span>
+      </div>
+      <div class="story-item" onclick="setCategory('laptop-new')">
+        <div class="story-ring"><div class="story-inner">🎮</div></div>
+        <span class="story-label">جيمنج وريندر</span>
+      </div>
+      <div class="story-item" onclick="setCategory('phones')">
+        <div class="story-ring"><div class="story-inner">🍏</div></div>
+        <span class="story-label">ركن الآيفون</span>
+      </div>
+      <div class="story-item" onclick="setCategory('phones')">
+        <div class="story-ring"><div class="story-inner">📱</div></div>
+        <span class="story-label">كسر زيرو</span>
+      </div>
+      <div class="story-item" onclick="setCategory('chargers')">
+        <div class="story-ring"><div class="story-inner">🔋</div></div>
+        <span class="story-label">شواحن أصلية</span>
+      </div>
+      <div class="story-item" onclick="setCategory('accessories')">
+        <div class="story-ring"><div class="story-inner">🚀</div></div>
+        <span class="story-label">تحديث SSD/RAM</span>
+      </div>
+    </div>
 
-    <!-- Category Filter Chips -->
+    <!-- 2. Interactive Hero Banner -->
+    <div class="hero-slider-wrap">
+      <div class="hero-slide">
+        <div class="hero-glow-sphere"></div>
+        <div class="hero-top-row">
+          <span class="hero-badge-pill">⚡ وارد الخارج فرز أول A+</span>
+          <span style="font-size:0.75rem; color:#94a3b8;">ضمان استبدال حقيقي 🛡️</span>
+        </div>
+        <h1 class="hero-title-main">لابتوبات استيراد كسر زيرو بأفضل سعر في مصر</h1>
+        <p class="hero-subtitle">تشكيلة واسعة من ThinkPad و Dell و HP مع فحص 50 نقطة ومعاينة كاملة وتشغيل قبل استلامك ودفعك للمندوب.</p>
+        <div class="hero-cta-row">
+          <button class="btn-hero-action" onclick="setCategory('laptop-import')">
+            <span>تصفح اللابتوبات الآن</span>
+            <span>←</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Live Flash Deals Banner with Real-Time Countdown -->
+    <div class="flash-deal-banner">
+      <div class="flash-deal-header">
+        <div class="flash-title-wrap">
+          <span class="flash-badge-pulse">صفقات اليوم 🔥</span>
+          <span style="font-size:0.85rem; font-weight:800; color:#fff;">ينتهي العرض الخاص خلال:</span>
+        </div>
+        <div class="countdown-timer-box">
+          <span class="time-digit" id="timerHours">05</span>
+          <span class="time-colon">:</span>
+          <span class="time-digit" id="timerMins">42</span>
+          <span class="time-colon">:</span>
+          <span class="time-digit" id="timerSecs">19</span>
+        </div>
+      </div>
+      <div style="font-size:0.78rem; color:#fca5a5; font-weight:700;">
+        خصم إضافي يصل لـ 1500 ج.م على أجهزة اللابتوب والآيفون المختارة حتى نفاد الكمية!
+      </div>
+    </div>
+
+    <!-- 4. Trust & Guarantee Strip -->
+    <div class="trust-strip">
+      <div class="trust-box">
+        <span class="trust-icon">🔍</span>
+        <div>
+          <div class="trust-text-title">فحص 50 نقطة</div>
+          <div class="trust-text-sub">جميع الأجهزة أصلية 100%</div>
+        </div>
+      </div>
+      <div class="trust-box">
+        <span class="trust-icon">🤝</span>
+        <div>
+          <div class="trust-text-title">عاين قبل الدفع</div>
+          <div class="trust-text-sub">شغّل وافحص مع المندوب</div>
+        </div>
+      </div>
+      <div class="trust-box">
+        <span class="trust-icon">🛡️</span>
+        <div>
+          <div class="trust-text-title">14 يوم تجربة</div>
+          <div class="trust-text-sub">استبدال فوري أو استرجاع</div>
+        </div>
+      </div>
+      <div class="trust-box">
+        <span class="trust-icon">🚚</span>
+        <div>
+          <div class="trust-text-title">شحن لكل مصر</div>
+          <div class="trust-text-sub">توصيل سريع حتى باب بيتك</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Category Filter Chips -->
     <div class="categories-scroll">
       <button class="chip-btn active" onclick="setCategory('all', this)">🔥 الكل</button>
       <button class="chip-btn" onclick="setCategory('laptop-import', this)">💻 لابتوبات استيراد</button>
@@ -930,25 +1321,34 @@
       <button class="chip-btn" onclick="setCategory('accessories', this)">🎧 إكسسوارات وهاردوير</button>
     </div>
 
-    <!-- Controls Row -->
-    <div class="controls-row">
-      <span class="results-count" id="resultsCount">عرض 16 منتج</span>
+    <!-- Section Header & Controls -->
+    <div class="section-header">
+      <div class="section-title-wrap">
+        <h2 class="section-title" id="sectionHeading">جميع الأجهزة المتاحة</h2>
+        <span class="section-counter" id="resultsCount">14 جهاز</span>
+      </div>
       <select id="sortSelect" class="sort-select" onchange="filterProducts()">
-        <option value="featured">المقترحة</option>
+        <option value="featured">✨ المقترحة</option>
         <option value="price-asc">الأقل سعراً</option>
         <option value="price-desc">الأعلى سعراً</option>
-        <option value="discount">أعلى خصم</option>
+        <option value="discount">أعلى خصم %</option>
       </select>
     </div>
 
-    <!-- Products Grid -->
+    <!-- 6. Products Grid -->
     <div class="products-grid" id="productsGrid">
-      <!-- Populated via JS -->
+      <!-- Injected via JavaScript -->
     </div>
 
   </main>
 
-  <!-- Bottom Navigation Bar (iOS / Android Native Feel) -->
+  <!-- 7. Floating Smart WhatsApp Advisor -->
+  <div class="floating-advisor-btn" onclick="openExpertConsultation()">
+    <span class="advisor-pulse"></span>
+    <span>💬 محتار؟ استشر خبير الأجهزة</span>
+  </div>
+
+  <!-- 8. Bottom Navigation Bar -->
   <nav class="bottom-nav">
     <div class="nav-item active" onclick="navigateTo('home')">
       <span class="nav-icon">🏠</span>
@@ -993,9 +1393,7 @@
         <button class="btn-close-sheet" onclick="closeModal('cartModal')">✕</button>
       </div>
       <div class="sheet-content">
-        <div id="cartItemsList">
-          <!-- Cart items injected -->
-        </div>
+        <div id="cartItemsList"></div>
 
         <div id="cartSummaryBox" class="cart-summary" style="display: none;">
           <div class="summary-row">
@@ -1042,9 +1440,9 @@
               <option value="القاهرة">القاهرة</option>
               <option value="الجيزة">الجيزة</option>
               <option value="الإسكندرية">الإسكندرية</option>
-              <option value="الدلتا والقليوبية">محافظات الدلتا</option>
-              <option value="الصعيد">محافظات الصعيد</option>
-              <option value="القناة">مدن القناة</option>
+              <option value="محافظات الدلتا">محافظات الدلتا</option>
+              <option value="محافظات الصعيد">محافظات الصعيد</option>
+              <option value="مدن القناة">مدن القناة</option>
             </select>
           </div>
           <div class="form-group">
@@ -1054,8 +1452,8 @@
           <div class="form-group">
             <label>طريقة الدفع:</label>
             <select id="paymentMethod" class="form-control">
-              <option value="الدفع عند الاستلام مع المعاينة">الدفع عند الاستلام (معاينة الجهاز وتشغيله أولاً)</option>
-              <option value="إنستاباي InstaPay">تحويل فوري عبر InstaPay</option>
+              <option value="الدفع عند الاستلام مع المعاينة">الدفع عند الاستلام (معاينة وتشغيل أولاً)</option>
+              <option value="تحويل إنستاباي InstaPay">تحويل فوري عبر InstaPay</option>
               <option value="محفظة فودافون كاش">محفظة فودافون كاش</option>
             </select>
           </div>
@@ -1072,7 +1470,7 @@
   <div class="modal-overlay" id="adminModal">
     <div class="modal-sheet">
       <div class="sheet-header">
-        <h3 class="sheet-title">لوحة تحكم المتجر (إضافة منتج)</h3>
+        <h3 class="sheet-title">لوحة تحكم المتجر (إضافة جهاز)</h3>
         <button class="btn-close-sheet" onclick="closeModal('adminModal')">✕</button>
       </div>
       <div class="sheet-content">
@@ -1116,13 +1514,13 @@
             <input type="text" id="prodImg" class="form-control" placeholder="اتركه فارغاً للصورة التلقائية">
           </div>
           <button type="submit" class="btn-checkout" style="background: var(--primary-gold); color: #000;">
-            <span>حفظ المنتج في المتجر ✨</span>
+            <span>حفظ الجهاز في المتجر ✨</span>
           </button>
         </form>
 
         <div style="margin-top: 20px; text-align: center;">
           <button onclick="resetDefaultProducts()" style="background:transparent; border:1px solid #ef4444; color:#ef4444; padding:8px 14px; border-radius:8px; cursor:pointer;">
-            استعادة المنتجات الافتراضية للمتجر
+            استعادة المنتجات الافتراضية
           </button>
         </div>
       </div>
@@ -1140,7 +1538,7 @@
         conditionLabel: "استيراد فرز أول A+",
         price: 11500,
         oldPrice: 13000,
-        warranty: "ضمان 3 شهور + 14 يوم تجربة",
+        warranty: "ضمان 3 شهور + 14 يوم فحص وتجربة",
         specs: ["Core i7-8650U", "16GB DDR4", "512GB SSD NVMe", "14 بوصة FHD IPS", "كيبورد مضيء"],
         desc: "لابتوب فئة رجال الأعمال الأقوى والأكثر اعتمادية، نحيف وخفيف، هيكل من ألياف الكربون ومعدن، شاشة مضادة للتوهج، بطارية أصلية ممتازة.",
         img: "https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=400&auto=format&fit=crop&q=80"
@@ -1322,18 +1720,30 @@
     let favorites = JSON.parse(localStorage.getItem('pst_favorites')) || [];
     let currentCategory = 'all';
 
-    // WhatsApp Store Number (can be updated by merchant)
+    // WhatsApp Store Number
     const STORE_WHATSAPP = "201000000000";
+
+    // Animated Search Placeholders
+    const SEARCH_PROMPTS = [
+      "ابحث عن: ThinkPad i7 الجيل 11...",
+      "ابحث عن: iPhone 13 Pro Max وارد دبي...",
+      "ابحث عن: شاحن Dell Type-C أصلي...",
+      "ابحث عن: رام 16 جيجا Crucial...",
+      "ابحث عن: لابتوبات جيمنج RTX 3050..."
+    ];
+    let promptIdx = 0;
 
     // Initialize App
     document.addEventListener('DOMContentLoaded', () => {
       renderProducts();
       updateCartBadge();
       updateFavBadge();
+      startCountdownTimer();
+      startSearchAnimation();
 
       // Register Service Worker for PWA
       if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('sw.js').catch(err => console.log('SW registration note:', err));
+        navigator.serviceWorker.register('sw.js').catch(err => console.log('SW note:', err));
       }
     });
 
@@ -1342,6 +1752,33 @@
       localStorage.setItem('pst_products', JSON.stringify(products));
       localStorage.setItem('pst_cart', JSON.stringify(cart));
       localStorage.setItem('pst_favorites', JSON.stringify(favorites));
+    }
+
+    // Animated Search Input Placeholder
+    function startSearchAnimation() {
+      const input = document.getElementById('searchInput');
+      setInterval(() => {
+        if (document.activeElement !== input && !input.value) {
+          promptIdx = (promptIdx + 1) % SEARCH_PROMPTS.length;
+          input.placeholder = SEARCH_PROMPTS[promptIdx];
+        }
+      }, 3000);
+    }
+
+    // Flash Deal Live Countdown Timer
+    function startCountdownTimer() {
+      let totalSeconds = 5 * 3600 + 42 * 60 + 19;
+      setInterval(() => {
+        if (totalSeconds > 0) {
+          totalSeconds--;
+          const hrs = Math.floor(totalSeconds / 3600);
+          const mins = Math.floor((totalSeconds % 3600) / 60);
+          const secs = totalSeconds % 60;
+          document.getElementById('timerHours').innerText = String(hrs).padStart(2, '0');
+          document.getElementById('timerMins').innerText = String(mins).padStart(2, '0');
+          document.getElementById('timerSecs').innerText = String(secs).padStart(2, '0');
+        }
+      }, 1000);
     }
 
     // Filter and Render Products
@@ -1364,10 +1801,10 @@
       } else if (sortVal === 'price-desc') {
         filtered.sort((a, b) => b.price - a.price);
       } else if (sortVal === 'discount') {
-        filtered.sort((a, b) => (b.oldPrice - b.price) - (a.oldPrice - a.price));
+        filtered.sort((a, b) => ((b.oldPrice || b.price) - b.price) - ((a.oldPrice || a.price) - a.price));
       }
 
-      document.getElementById('resultsCount').innerText = `عرض ${filtered.length} منتج`;
+      document.getElementById('resultsCount').innerText = `${filtered.length} جهاز متوفر`;
       renderGrid(filtered);
     }
 
@@ -1381,8 +1818,8 @@
         grid.innerHTML = `
           <div class="empty-state" style="grid-column: 1 / -1;">
             <div class="empty-state-icon">🔍</div>
-            <h3>لا توجد منتجات مطابقة للبحث</h3>
-            <p>جرب البحث بكلمات أخرى أو اختر قسماً آخر من الأعلى.</p>
+            <h3>لا توجد أجهزة مطابقة للبحث</h3>
+            <p>جرب البحث بكلمات أخرى أو اختر قسماً آخر من شريط الأقسام في الأعلى.</p>
           </div>
         `;
         return;
@@ -1394,6 +1831,7 @@
                                item.condition === 'zero' ? 'condition-zero' : 'condition-new';
 
         const specsHtml = item.specs.slice(0, 3).map(s => `<span class="spec-tag">${s}</span>`).join('');
+        const discountAmt = item.oldPrice ? (item.oldPrice - item.price) : 0;
 
         return `
           <div class="product-card" onclick="openProductDetails('${item.id}')">
@@ -1414,6 +1852,7 @@
                 <div class="price-row">
                   <span class="current-price">${item.price.toLocaleString()} ج.م</span>
                   ${item.oldPrice ? `<span class="old-price">${item.oldPrice.toLocaleString()} ج.م</span>` : ''}
+                  ${discountAmt > 0 ? `<span class="discount-badge">وفر ${discountAmt.toLocaleString()} ج</span>` : ''}
                 </div>
                 <div class="card-actions" onclick="event.stopPropagation()">
                   <button class="btn-add-cart" onclick="addToCart('${item.id}')">
@@ -1432,10 +1871,10 @@
 
     function getCategoryName(catKey) {
       const map = {
-        'laptop-import': 'لابتوبات استيراد',
-        'laptop-new': 'لابتوبات جديد',
-        'phones': 'هواتف ذكية',
-        'chargers': 'شواحن أصلية',
+        'laptop-import': 'لابتوبات استيراد فرز أول',
+        'laptop-new': 'لابتوبات جديد بالضمان',
+        'phones': 'هواتف ذكية أصلية',
+        'chargers': 'شواحن واعتمادات أصلية',
         'accessories': 'إكسسوارات وهاردوير'
       };
       return map[catKey] || 'إلكترونيات';
@@ -1443,14 +1882,21 @@
 
     function setCategory(cat, btnEl) {
       currentCategory = cat;
-      if (btnEl) {
-        document.querySelectorAll('.chip-btn').forEach(b => b.classList.remove('active'));
-        btnEl.classList.add('active');
-      } else {
-        document.querySelectorAll('.chip-btn').forEach(b => {
-          b.classList.toggle('active', b.getAttribute('onclick').includes(`'${cat}'`));
-        });
-      }
+      const headingMap = {
+        'all': 'جميع الأجهزة المتاحة',
+        'laptop-import': 'لابتوبات استيراد فرز أول A+ للأعمال',
+        'laptop-new': 'لابتوبات جديد بالضمان والكرتونة',
+        'phones': 'هواتف ذكية (آيفون وأندرويد)',
+        'chargers': 'شواحن أصلية Type-C و GaN',
+        'accessories': 'إكسسوارات وترقيات SSD و RAM'
+      };
+      document.getElementById('sectionHeading').innerText = headingMap[cat] || 'الأجهزة المعروضة';
+
+      document.querySelectorAll('.chip-btn').forEach(b => {
+        const isTarget = btnEl ? (b === btnEl) : b.getAttribute('onclick').includes(`'${cat}'`);
+        b.classList.toggle('active', isTarget);
+      });
+
       filterProducts();
     }
 
@@ -1481,18 +1927,18 @@
         </div>
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
           <span style="font-size:0.85rem; font-weight:800; color:var(--primary-gold);">${item.conditionLabel}</span>
-          <span style="font-size:1.3rem; font-weight:900; color:#fff;">${item.price.toLocaleString()} ج.م</span>
+          <span style="font-size:1.35rem; font-weight:900; color:#fff;">${item.price.toLocaleString()} ج.م</span>
         </div>
         <p style="font-size:0.9rem; color:#cbd5e1; line-height:1.6; margin-bottom:14px;">${item.desc}</p>
 
-        <h4 style="font-size:0.95rem; font-weight:800; color:#fff; border-bottom:1px solid #334155; padding-bottom:4px;">جدول المواصفات والضمان:</h4>
+        <h4 style="font-size:0.95rem; font-weight:800; color:#fff; border-bottom:1px solid #334155; padding-bottom:6px; margin-bottom:6px;">📋 جدول المواصفات وفترة الضمان:</h4>
         <table class="specs-table">
-          <tr><td>فترة الضمان</td><td style="color:#34d399;">${item.warranty || 'ضمان 14 يوم فحص وتجربة'}</td></tr>
+          <tr><td>سياسة الضمان</td><td style="color:#34d399; font-weight:800;">${item.warranty || 'ضمان 14 يوم فحص وتجربة'}</td></tr>
           ${specsRows}
         </table>
 
         <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; margin-top:14px;">
-          <button class="btn-checkout" style="margin-top:0; background:var(--primary-gold); color:#000;" onclick="addToCart('${item.id}'); closeModal('detailsModal');">
+          <button class="btn-checkout" style="margin-top:0; background:var(--gold-gradient); color:#000;" onclick="addToCart('${item.id}'); closeModal('detailsModal');">
             <span>🛒 أضف للسلة</span>
           </button>
           <button class="btn-checkout" style="margin-top:0; background:#25d366; color:#fff;" onclick="orderViaWhatsAppDirect('${item.id}')">
@@ -1518,7 +1964,7 @@
 
       saveState();
       updateCartBadge();
-      showToast(`🛒 تمت إضافة "${prod.title.slice(0, 22)}..." للسلة!`);
+      showToast(`🛒 تمت إضافة "${prod.title.slice(0, 20)}..." للسلة!`);
     }
 
     function updateCartQty(id, change) {
@@ -1556,7 +2002,7 @@
           <div class="empty-state">
             <div class="empty-state-icon">🛒</div>
             <h3>سلة المشتريات فارغة</h3>
-            <p>تصفح أحدث أجهزة الاستيراد والجديدة وأضف ما يعجبك.</p>
+            <p>تصفح أحدث أجهزة الاستيراد والجديدة وأضف ما يناسبك.</p>
           </div>
         `;
         summaryBox.style.display = 'none';
@@ -1574,7 +2020,7 @@
           </div>
           <div class="qty-controls">
             <button class="qty-btn" onclick="updateCartQty('${item.id}', -1)">-</button>
-            <span style="font-weight:800; font-size:0.9rem;">${item.qty}</span>
+            <span style="font-weight:900; font-size:0.95rem;">${item.qty}</span>
             <button class="qty-btn" onclick="updateCartQty('${item.id}', 1)">+</button>
           </div>
         </div>
@@ -1632,9 +2078,8 @@ ${itemsTxt}
       updateCartBadge();
       closeModal('checkoutModal');
 
-      showToast("✅ تم تسجيل الطلب! جاري فتح واتساب للتأكيد...");
+      showToast("✅ تم تسجيل طلبك بنجاح! جاري فتح واتساب للتأكيد...");
 
-      // Open WhatsApp
       const encodedMsg = encodeURIComponent(message);
       window.open(`https://wa.me/${STORE_WHATSAPP}?text=${encodedMsg}`, '_blank');
     }
@@ -1650,7 +2095,19 @@ ${itemsTxt}
 • السعر المعروض: ${item.price.toLocaleString()} ج.م
 • الضمان: ${item.warranty}
 
-هل الجهاز متوفر حالياً للاستلام أو الشحن مع المعاينة؟`;
+هل الجهاز متوفر حالياً للاستلام أو الشحن مع المعاينة أولاً؟`;
+
+      window.open(`https://wa.me/${STORE_WHATSAPP}?text=${encodeURIComponent(msg)}`, '_blank');
+    }
+
+    function openExpertConsultation() {
+      const msg = 
+`*مرحباً، أود استشارة بخصوص اختيار جهاز مناسب من متجر PST المستورد 🤝*
+• ميزانيتي التقريبية: 
+• نوع الاستخدام (برمجة، جرافيك وألعاب، تصفح ودراسة، أعمال):
+• الموديل المفضل (لابتوب استيراد / موبايل):
+
+أرجو ترشيح أفضل جهاز متاح حالياً بأعلى قيمة وسعر!`;
 
       window.open(`https://wa.me/${STORE_WHATSAPP}?text=${encodeURIComponent(msg)}`, '_blank');
     }
@@ -1692,7 +2149,7 @@ ${itemsTxt}
         document.getElementById('detailSheetContent').innerHTML = `
           <div style="display:flex; flex-direction:column; gap:10px;">
             ${favProducts.map(p => `
-              <div style="display:flex; align-items:center; gap:12px; background:#080c16; padding:10px; border-radius:12px; border:1px solid #1e293b;">
+              <div style="display:flex; align-items:center; gap:12px; background:#080d1a; padding:10px; border-radius:14px; border:1px solid #1e293b;">
                 <img src="${p.img}" style="width:60px; height:60px; object-fit:contain;" onerror="this.src='icon.svg'">
                 <div style="flex-grow:1;">
                   <h4 style="font-size:0.9rem; color:#fff; font-weight:800;">${p.title}</h4>
@@ -1746,7 +2203,7 @@ ${itemsTxt}
       filterProducts();
       closeModal('adminModal');
       document.getElementById('addProductForm').reset();
-      showToast("✨ تم إضافة المنتج بنجاح للمتجر!");
+      showToast("✨ تم إضافة الجهاز بنجاح للمتجر!");
     }
 
     function resetDefaultProducts() {
