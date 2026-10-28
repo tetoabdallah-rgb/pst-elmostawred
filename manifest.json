@@ -1,0 +1,22 @@
+{
+  "name": "PST - المستورد | متجر الأجهزة والإكسسوارات",
+  "short_name": "PST المستورد",
+  "description": "متجر PST المستورد الإلكتروني - لابتوبات استيراد فرز أول وجديد، هواتف ذكية، وإكسسوارات أصلية بضمان حقيقي وتوصيل لجميع المحافظات",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#020617",
+  "theme_color": "#0a0f1d",
+  "dir": "rtl",
+  "lang": "ar",
+  "categories": ["shopping", "business", "productivity"],
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

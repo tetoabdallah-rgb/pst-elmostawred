@@ -1,0 +1,36 @@
+{
+  "name": "pst-elmostawred-app",
+  "version": "1.0.0",
+  "description": "تطبيق متجر PST - المستورد للهواتف واللابتوبات والإكسسوارات (أندرويد APK و iOS)",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve .",
+    "cap:add:android": "npx @capacitor/cli add android",
+    "cap:add:ios": "npx @capacitor/cli add ios",
+    "cap:sync": "npx @capacitor/cli sync",
+    "cap:open:android": "npx @capacitor/cli open android",
+    "cap:open:ios": "npx @capacitor/cli open ios"
+  },
+  "keywords": [
+    "ecommerce",
+    "egypt",
+    "laptops",
+    "smartphones",
+    "accessories",
+    "refurbished",
+    "pwa",
+    "capacitor",
+    "apk",
+    "ios"
+  ],
+  "author": "PST - El Mostawred",
+  "license": "MIT",
+  "dependencies": {
+    "@capacitor/android": "^6.0.0",
+    "@capacitor/core": "^6.0.0",
+    "@capacitor/ios": "^6.0.0"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^6.0.0"
+  }
+}
